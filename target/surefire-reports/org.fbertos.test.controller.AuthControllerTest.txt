@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: org.fbertos.test.controller.AuthControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 12.571 s <<< FAILURE! - in org.fbertos.test.controller.AuthControllerTest
+testCreateToken(org.fbertos.test.controller.AuthControllerTest)  Time elapsed: 0.009 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at org.fbertos.test.controller.AuthControllerTest.testCreateToken(AuthControllerTest.java:53)
+

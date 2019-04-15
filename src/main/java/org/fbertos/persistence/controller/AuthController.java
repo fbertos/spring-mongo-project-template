@@ -15,11 +15,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/auth")
 public class AuthController {
 	 @Autowired
 	 UserService userService;
@@ -30,7 +32,7 @@ public class AuthController {
 	 @Autowired
 	 AuthenticationManager authenticationManager;
 	 
-	 @PostMapping(value="/auth")
+	 @PostMapping(value="")
 	 public @ResponseBody ResponseEntity<AuthInfo> auth(@RequestParam String username, @RequestParam String password) {
 		 try {
 			 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -47,7 +49,7 @@ public class AuthController {
 		 }
 	 }
 	 
-	 @PutMapping(value="/auth/{token}")
+	 @PutMapping(value="/{token}")
 	 public @ResponseBody ResponseEntity<AuthInfo> validateToken(@PathVariable String token) {
 		 try {
 			 if (jwtTokenProvider.validateToken(token)) {
