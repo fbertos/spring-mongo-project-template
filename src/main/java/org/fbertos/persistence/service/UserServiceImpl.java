@@ -78,5 +78,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			return list.get(0);
     	
         throw new UsernameNotFoundException(username);
-    }	
+    }    
 }

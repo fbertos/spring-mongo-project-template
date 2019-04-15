@@ -8,6 +8,8 @@ import org.fbertos.persistence.search.QueryOrder;
 import org.fbertos.persistence.search.QueryPagination;
 import org.fbertos.persistence.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +28,9 @@ public class UserController {
 	 private UserService userService;
 	 
 	 @GetMapping(value="/{userId}")
-	 public @ResponseBody User get(@PathVariable String userId) {
+	 public @ResponseBody ResponseEntity<User> get(@PathVariable String userId) {
 		 User user = userService.get(userId);
-		 return user;
+		 return ResponseEntity.status(HttpStatus.OK).body(user);
 	 }
 	 
 	 @DeleteMapping(value="/{userId}")
@@ -38,23 +40,43 @@ public class UserController {
      }
 
 	 @PutMapping(value="")
-     public void update(@RequestBody User user) {
+     public @ResponseBody ResponseEntity<User> update(@RequestBody User user) {
+		 if (!checkForUpdate(user))
+			 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(user);
+		 
     	 userService.update(user);
+    	 return ResponseEntity.status(HttpStatus.OK).body(user);
      }
 	    
 	 @PostMapping(value="")
-     public @ResponseBody User create(@RequestBody User user) {
+     public @ResponseBody ResponseEntity<User> create(@RequestBody User user) {
+		 if (!checkForCreate(user))
+			 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(user);
+		 
     	 userService.save(user);
-    	 return user;
+    	 return ResponseEntity.status(HttpStatus.OK).body(user);
      }
 
 	 @GetMapping(value = "")
-	 public @ResponseBody List<User> get(@RequestParam(value="q", required=false) String q,
+	 public @ResponseBody ResponseEntity<List<User>> get(@RequestParam(value="q", required=false) String q,
 			 @RequestParam(value="order", required=false) String order,			 
 			 @RequestParam(value="page", required=false) Integer page,
 			 @RequestParam(value="itemsPerPage", required=false) Integer itemsPerPage) {
 		 
 		 QueryFilter filter = new QueryFilter(q, QueryOrder.parseQueryOrder(order), new QueryPagination(page, itemsPerPage));
-		 return userService.find(filter);
+		 List<User> list = userService.find(filter);
+		 return ResponseEntity.status(HttpStatus.OK).body(list);
 	 }
+	 
+     /*************************************************************
+      ************* PRIVATE METHODS ONLY FOR LOCAL USE ************
+      **************************************************************/
+    
+     private boolean checkForCreate(User user) {
+    	return false;
+     }
+     
+     private boolean checkForUpdate(User user) {
+    	return false;
+     }
 }
