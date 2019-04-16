@@ -23,7 +23,9 @@ admin1234 => $2a$08$.wdsqTvMznn76z8tq1J/gep7uqKd.bpI6gqJn9zTlRAeAWQucuX4q
   
 update USER_ set PASSWORD = '$2a$08$.wdsqTvMznn76z8tq1J/gep7uqKd.bpI6gqJn9zTlRAeAWQucuX4q' where ID = 1;
 
-user collection
+
+
+"User" collection
 {
     "_id" : ObjectId("5caf54f86f5b5d22dcdae2b7"),
     "username" : "admin",
@@ -40,7 +42,7 @@ user collection
     "_class" : "org.fbertos.persistence.model.User"
 }
 
-ACL collection
+"Acl" collection
 {
     "_id" : "a285005a-a892-409a-be86-59877142aa17",
     "_class" : "org.springframework.security.acls.domain.MongoAcl",

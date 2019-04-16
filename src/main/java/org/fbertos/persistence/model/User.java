@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Document
+@Document(collection = "User")
 public class User implements UserDetails {
 	private static final long serialVersionUID = 560900391361803331L;
 

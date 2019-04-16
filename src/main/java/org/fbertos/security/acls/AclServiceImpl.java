@@ -14,10 +14,19 @@ public class AclServiceImpl implements AclService {
 	AclRepository aclRepository;
 	
 	@PreAuthorize("hasAuthority('ADMIN_ROLE')")
+	public void save(MongoAcl acl) {
+		aclRepository.save(acl);
+	}
+
+	@PreAuthorize("hasAuthority('ADMIN_ROLE')")
+	public void update(MongoAcl acl) {
+		aclRepository.save(acl);
+	}
+	
+	@PreAuthorize("hasAuthority('ADMIN_ROLE')")
 	public MongoAcl loadAclByClass(String className) {
 		List<MongoAcl> list = aclRepository.findByClassName(className);
 		if (list != null) return list.get(0);
 		return null;
 	}
-
 }

@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import net.sf.ehcache.search.Direction;
 
 /*
+Permission schema:
+
 R W D
 1 1 1
 
