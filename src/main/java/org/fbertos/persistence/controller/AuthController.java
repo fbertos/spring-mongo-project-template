@@ -37,6 +37,10 @@ public class AuthController {
 		 try {
 			 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			 User user = userService.loadUserByUsername(username);
+			 
+			 if (user.isAccountExpired() || user.isAccountLocked() || user.isCredentialsExpired() || !user.isEnabled())
+				 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			 
 			 String token = jwtTokenProvider.createToken(username, user.getStringAuthorities());
 			 AuthInfo info = new AuthInfo(username, token);
 			 Map<Object, Object> model = new HashMap<>();
@@ -55,6 +59,10 @@ public class AuthController {
 			 if (jwtTokenProvider.validateToken(token)) {
 				 String username = jwtTokenProvider.getUsername(token);
 				 User user = userService.loadUserByUsername(username);
+				 
+				 if (user.isAccountExpired() || user.isAccountLocked() || user.isCredentialsExpired() || !user.isEnabled())
+					 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+				 
 				 String newToken = jwtTokenProvider.createToken(username, user.getStringAuthorities());
 				 AuthInfo info = new AuthInfo(username, newToken);
 				 Map<Object, Object> model = new HashMap<>();

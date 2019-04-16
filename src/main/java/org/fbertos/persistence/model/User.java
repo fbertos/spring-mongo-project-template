@@ -18,18 +18,16 @@ public class User implements UserDetails {
 
 	@Id
 	private ObjectId _id;	
-
     private String username;
-
     private String password;
-
     private boolean accountExpired;
-
     private boolean accountLocked;
-
     private boolean credentialsExpired;
-
     private boolean enabled;
+    
+    /** Extra fields **/
+    private String fullName;
+    private String contactDetails;
     
     @JsonIgnore
     private Collection<Authority> authorities;    
@@ -121,5 +119,20 @@ public class User implements UserDetails {
 		
 		return list;
 	}
-	
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(String contactDetails) {
+		this.contactDetails = contactDetails;
+	}
 }

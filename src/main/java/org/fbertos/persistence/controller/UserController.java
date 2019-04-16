@@ -1,13 +1,19 @@
 package org.fbertos.persistence.controller;
 
+import java.security.Key;
 import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.bson.internal.Base64;
 import org.fbertos.persistence.model.User;
 import org.fbertos.persistence.search.QueryFilter;
 import org.fbertos.persistence.search.QueryOrder;
 import org.fbertos.persistence.search.QueryPagination;
 import org.fbertos.persistence.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +32,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	 @Autowired
 	 private UserService userService;
+	 
+     @Value("${security.jwt.token.secret-key:secret}")
+     private String secretKey = "secret";
 	 
 	 @GetMapping(value="/{userId}")
 	 public @ResponseBody ResponseEntity<User> get(@PathVariable String userId) {
@@ -73,10 +82,36 @@ public class UserController {
       **************************************************************/
     
      private boolean checkForCreate(User user) {
-    	return false;
+    	 if (user.getUsername() == null || user.getUsername().trim().length() == 0) return false;
+    	 if (user.getPassword() == null || user.getPassword().trim().length() == 0) return false;
+    	 
+    	 User existing = userService.loadUserByUsername(user.getUsername());
+    	 if (existing == null) return false;
+    	 
+    	 try {
+    		 String password = encodePassword(user.getPassword());
+    		 user.setPassword(password);
+    	 }
+    	 catch (Exception e) {
+    		 return false;
+    	 }
+    	 
+    	 return true;
      }
      
      private boolean checkForUpdate(User user) {
-    	return false;
+    	 User existing = userService.get(user.getId().toHexString());
+    	 if (existing == null) return false;
+    	 user.setUsername(existing.getUsername());
+    	 user.setPassword(existing.getPassword());
+    	 return true;
+     }
+     
+     private String encodePassword(String password) throws Exception {
+         Key aesKey = new SecretKeySpec(secretKey.getBytes(), "AES");
+         Cipher cipher = Cipher.getInstance("AES");
+         cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+         byte[] encrypted = cipher.doFinal(password.getBytes());
+ 		 return Base64.encode(encrypted);    	 
      }
 }
