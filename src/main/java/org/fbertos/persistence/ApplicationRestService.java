@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EntityScan("org.fbertos.persistence.model")
+@EntityScan(basePackages={"org.fbertos.persistence.model", "org.fbertos.security.acls.domain"})
 @ComponentScan(basePackages={"org.fbertos"})
 public class ApplicationRestService {
 

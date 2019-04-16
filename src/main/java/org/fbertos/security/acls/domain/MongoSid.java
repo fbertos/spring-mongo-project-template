@@ -1,4 +1,4 @@
-package org.springframework.security.acls.domain;
+package org.fbertos.security.acls.domain;
 
 public class MongoSid {
 	/**

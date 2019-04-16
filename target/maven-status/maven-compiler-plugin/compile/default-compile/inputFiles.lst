@@ -4,9 +4,11 @@ C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\sprin
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\model\User.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\search\QueryFilter.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\service\UserService.java
+C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\AclService.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\domain\MongoAcl.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\controller\UserController.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\authorization\config\ACLContext.java
+C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\AclServiceImpl.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\domain\MongoSid.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\dao\UserRepository.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\controller\AuthInfo.java
@@ -22,6 +24,7 @@ C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\sprin
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\authorization\config\InvalidJwtAuthenticationException.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\controller\AuthController.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\mongodb\MongoDBAclService.java
+C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\controller\AclController.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\authorization\config\JwtConfigurer.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\springframework\security\acls\mongodb\MongoDBMutableAclService.java
 C:\Users\fbertos\workspace\spring-mongo-project-template\src\main\java\org\fbertos\persistence\search\QueryOrder.java

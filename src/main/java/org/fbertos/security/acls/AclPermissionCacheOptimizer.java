@@ -1,4 +1,4 @@
-package org.springframework.security.acls;
+package org.fbertos.security.acls;
 
 import java.util.ArrayList;
 import java.util.Collection;

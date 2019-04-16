@@ -1,4 +1,4 @@
-package org.springframework.security.acls.domain;
+package org.fbertos.security.acls.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;

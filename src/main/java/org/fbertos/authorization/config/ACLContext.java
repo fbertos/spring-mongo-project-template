@@ -3,6 +3,10 @@ package org.fbertos.authorization.config;
 import java.net.UnknownHostException;
 
 import org.fbertos.persistence.dao.UserRepository;
+import org.fbertos.security.acls.AclPermissionCacheOptimizer;
+import org.fbertos.security.acls.dao.AclRepository;
+import org.fbertos.security.acls.mongodb.BasicLookupStrategy;
+import org.fbertos.security.acls.mongodb.MongoDBMutableAclService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.ehcache.EhCacheFactoryBean;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
@@ -12,9 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
-import org.springframework.security.acls.AclPermissionCacheOptimizer;
 import org.springframework.security.acls.AclPermissionEvaluator;
-import org.springframework.security.acls.dao.AclRepository;
 import org.springframework.security.acls.domain.AclAuthorizationStrategy;
 import org.springframework.security.acls.domain.AclAuthorizationStrategyImpl;
 import org.springframework.security.acls.domain.ConsoleAuditLogger;
@@ -23,8 +25,6 @@ import org.springframework.security.acls.domain.EhCacheBasedAclCache;
 import org.springframework.security.acls.jdbc.LookupStrategy;
 import org.springframework.security.acls.model.AclService;
 import org.springframework.security.acls.model.PermissionGrantingStrategy;
-import org.springframework.security.acls.mongodb.BasicLookupStrategy;
-import org.springframework.security.acls.mongodb.MongoDBMutableAclService;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Configuration
